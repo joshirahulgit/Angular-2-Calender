@@ -1,20 +1,88 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+<input type="text" name="calender" [ngModel]="selectedDate | date">
+<div class="btn-group">
+	<button type="button" class="btn btn-default" (click)="openCalander()">
+		<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+	</button>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div *ngIf="isCalender" class="calenderbox">
+      <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2">
+          <div class="label">Return Date</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+
+              <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 label">Year</div>
+              </div>
+                <div class="row">
+                  <div class="col-xs-2 col-sm-2 col-md-2 btn-default" (click)="getMonths(today)">{{today | date:'yyyy'}}</div>
+                  <div class="col-xs-2 col-sm-2 col-md-2 btn-default" (click)="getMonths(nextYear)">{{nextYear | date:'yyyy'}}</div>
+              </div>
+          <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 label">Month</div>
+          </div>
+            <div class="row">
+            <div class="col-xs-4 col-sm-3 col-md-3" *ngFor="let month of months; let i = index">
+              <button (click)="getDates(i)" [disabled]='i < currentMonth && currentYear === selectedYear'[ngClass]="{'active': i === selectedMonth}">{{month}}</button>
+            </div>
+          </div>
+        </div>
+        <div class="monrow"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <div class="label">Day</div>
+            <table>
+              <tr>
+                <th *ngFor="let day of daysLabel">{{day}}</th>
+              </tr>
+              <tr>
+                <td *ngFor="let r1 of row1">
+                  <button (click)="getSelectedDate(r1)" [disabled]='r1 === null  || r1 < currentDate && currentMonth === selectedMonth && currentYear === selectedYear'>{{r1}}
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td *ngFor="let r2 of row2">
+                  <button (click)="getSelectedDate(r2)" [disabled]='r2 < currentDate && currentMonth === selectedMonth && currentYear === selectedYear'>{{r2}}
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td *ngFor="let r3 of row3">
+                  <button (click)="getSelectedDate(r3)" [disabled]='r3 < currentDate && currentMonth === selectedMonth && currentYear === selectedYear'>
+                    {{r3}}
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td *ngFor="let r4 of row4">
+                  <button (click)="getSelectedDate(r4)" [disabled]='r4 < currentDate && currentMonth === selectedMonth && currentYear === selectedYear'>
+                    {{r4}}
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td *ngFor="let r5 of row5">
+                  <button (click)="getSelectedDate(r5)" [disabled]='r5 < currentDate && currentMonth === selectedMonth && currentYear === selectedYear'>
+                    {{r5}}
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td *ngFor="let r6 of row6">
+                  <button (click)="getSelectedDate(r6)" [disabled]='r6 < currentDate && currentMonth === selectedMonth && currentYear === selectedYear'>
+                    {{r6}}
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+      </div>
+</div>
+</div>
+
+
+
 
