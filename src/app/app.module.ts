@@ -1,18 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonsModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
-import {CalenderComponent} from './calender/calender.component';
+import {CalendarComponent} from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalenderComponent
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ButtonsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
